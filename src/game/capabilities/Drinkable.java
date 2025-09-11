@@ -10,6 +10,6 @@ public interface Drinkable {
    * @param actor   is the actor object
    * @return a string that inform what happened.
    */
-  public String drinkBy(Actor actor);
+  public String drunkBy(Actor actor);
 }
 
