@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.actors.attributes.ActorAttributeOperation;
 import edu.monash.fit2099.engine.actors.attributes.BaseAttributes;
 import edu.monash.fit2099.engine.items.Item;
-import edu.monash.fit2099.engine.positions.Location;
+import edu.monash.fit2099.engine.positions.GameMap;
 import game.actions.DrinkAction;
 import game.capabilities.Drinkable;
 
@@ -45,19 +45,24 @@ public class Bottle extends Item implements Drinkable {
    */
   @Override
   public String drunkBy(Actor actor) {
+    if (this.remainCapacity == 0) {
+      return "Water bottle is empty";
+    }
     this.remainCapacity -= 1;
     actor.modifyAttribute(BaseAttributes.STAMINA, ActorAttributeOperation.INCREASE, 4);
-    return actor + " drinks from this bottle" + this.remainCapacity + "/" + this.maxCapacity;
+    return actor + " drinks from this bottle " + this.remainCapacity + "/" + this.maxCapacity
+        + " remaining";
   }
 
   /**
-   * List of allowable actions that can be performed on the Bedroll when it is on the ground
+   * List of allowable actions that the bottle can perform to its owner
+   * or to the current map while being carried by an actor.
    *
-   * @param location the location of the ground on which the item lies
+   * @param owner the actor that owns the item
+   * @param map the map where the actor is performing the action on
    * @return an unmodifiable list of Actions
    */
-  @Override
-  public ActionList allowableActions(Location location) {
+  public ActionList allowableActions(Actor owner, GameMap map) {
     ActionList actions = new ActionList();
     actions.add(new DrinkAction(this));
     return actions;
