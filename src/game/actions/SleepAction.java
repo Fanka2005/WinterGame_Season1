@@ -1,73 +1,29 @@
 package game.actions;
 
-import edu.monash.fit2099.engine.GameEntity;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.capabilities.Status;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.positions.Location;
 import game.capabilities.Sleepable;
 
-public class SleepAction extends Action implements Status {
+/**
+ * <h1>SleepAction class</h1>
+ * This class is used extend the abstract Action class for Sleeping action
+ *
+ * @author Fauzanda Lathifanka Sunarko
+ */
+public class SleepAction extends Action {
   /**
    * Store the sleepable object
    */
   private Sleepable sleepable;
 
   /**
-   * Store the sleep duration
-   */
-  private int duration;
-
-  /**
-   * Store the sleep location
-   */
-  private Location location;
-
-  /**
-   * DrinkAction Constructor
+   * SleepAction Constructor
    *
-   * @param sleepable is a drinkable object
+   * @param sleepable is the sleepable object
    */
-  public SleepAction(Sleepable sleepable, int duration, Location location) {
+  public SleepAction(Sleepable sleepable) {
     this.sleepable = sleepable;
-    this.duration = duration;
-    this.location = location;
-
-  }
-
-
-  /**
-   * Called once per tick to update the status of the current entity. Default
-   * implementation does nothing.
-   *
-   * @param currEntity the entity this status is attached to
-   */
-  @Override
-  public void tickStatus(GameEntity currEntity, Location location) {
-    if (sleepable != null) {
-      this.duration--;
-    }
-  }
-
-  /**
-   * Indicates whether this status is still active.
-   *
-   * @return true if active, false otherwise
-   */
-  @Override
-  public boolean isStatusActive() {
-    return duration != 0;
-  }
-
-  /**
-   * This provides a mechanism for Actions to take more than one turn.
-   * For example, an action can change its state and return itself, or return the next Action in a series.
-   * By default, this returns null, indicating that the Action will complete in one turn.
-   * @return null
-   */
-  public Action getNextAction() {
-    return new SleepAction(this.sleepable, this.duration, this.location);
   }
 
   /**
@@ -79,10 +35,6 @@ public class SleepAction extends Action implements Status {
    */
   @Override
   public String execute(Actor actor, GameMap map) {
-    if(this.isStatusActive()){
-      this.tickStatus(actor, this.location);
-      this.getNextAction();
-    }
     return sleepable.sleptBy(actor);
   }
 
@@ -94,7 +46,8 @@ public class SleepAction extends Action implements Status {
    */
   @Override
   public String menuDescription(Actor actor) {
-    return actor + " will sleep in " + sleepable.getClass().getSimpleName();
+    return actor + " will sleep on " + this.sleepable;
   }
+
 }
 

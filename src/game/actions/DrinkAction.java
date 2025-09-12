@@ -5,6 +5,12 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.capabilities.Drinkable;
 
+/**
+ * <h1>DrinkAction class</h1>
+ * This class is used extend the abstract Action class for Drinking action
+ *
+ * @author Fauzanda Lathifanka Sunarko
+ */
 public class DrinkAction extends Action {
   /**
    * Store the drinkable object
@@ -40,7 +46,7 @@ public class DrinkAction extends Action {
    */
   @Override
   public String menuDescription(Actor actor) {
-    return actor + " will drink from " + drinkable.getClass().getSimpleName();
+    return actor + " will drink from " + this.drinkable;
   }
 
 }
