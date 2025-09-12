@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.capabilities.Sleepable;
+import game.statuses.Sleeping;
 
 /**
  * <h1>SleepAction class</h1>
@@ -18,12 +19,30 @@ public class SleepAction extends Action {
   private Sleepable sleepable;
 
   /**
+   * Store the duration
+   */
+  private int duration;
+
+  /**
    * SleepAction Constructor
    *
    * @param sleepable is the sleepable object
    */
-  public SleepAction(Sleepable sleepable) {
+  public SleepAction(Sleepable sleepable, int duration) {
     this.sleepable = sleepable;
+    this.duration = duration;
+  }
+
+  /**
+   * This provides a mechanism for Actions to take more than one turn. For example, an action can
+   * change its state and return itself, or return the next Action in a series. By default, this
+   * returns null, indicating that the Action will complete in one turn.
+   */
+  @Override
+  public Action getNextAction() {
+    if(this.duration>0) {
+      return new SleepAction(this.sleepable, this.duration-1);}
+    return null;
   }
 
   /**
@@ -35,6 +54,13 @@ public class SleepAction extends Action {
    */
   @Override
   public String execute(Actor actor, GameMap map) {
+    if(!actor.hasStatus(Sleeping.class)){
+      actor.addStatus(new Sleeping(this.duration));
+    }
+    if(this.duration>0) {
+      return actor + " is sleeping, " + this.duration + " more turns";
+    }
+
     return sleepable.sleptBy(actor);
   }
 
@@ -46,7 +72,7 @@ public class SleepAction extends Action {
    */
   @Override
   public String menuDescription(Actor actor) {
-    return actor + " will sleep on " + this.sleepable;
+    return actor + " will sleep in " + this.sleepable + " for " + this.duration + " turns";
   }
 
 }
