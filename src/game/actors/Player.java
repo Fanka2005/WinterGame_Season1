@@ -1,11 +1,16 @@
 package game.actors;
 
+import static edu.monash.fit2099.engine.actors.attributes.BaseAttributes.MANA;
+import static edu.monash.fit2099.engine.actors.attributes.BaseAttributes.STAMINA;
+
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.actors.attributes.BaseActorAttribute;
+import edu.monash.fit2099.engine.actors.attributes.BaseAttributes;
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
+import edu.monash.fit2099.engine.positions.GameMap;
 import game.BareFist;
 
 /**
@@ -23,6 +28,10 @@ public class Player extends Actor {
     public Player(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
         this.setIntrinsicWeapon(new BareFist());
+
+        //STAMINA : Hydration Level, MANA: Warmth Level
+        this.addNewStatistic(BaseAttributes.STAMINA, new BaseActorAttribute(20));
+        this.addNewStatistic(BaseAttributes.MANA, new BaseActorAttribute(30));
     }
 
     @Override
@@ -30,6 +39,11 @@ public class Player extends Actor {
         // Handle multi-turn Actions
         if (lastAction.getNextAction() != null)
             return lastAction.getNextAction();
+
+        display.println(
+            this + "\n" + "Hydration Level: " + this.getAttribute(STAMINA) + "\n" + "Warmth Level: "
+                + this.getAttribute(
+                MANA));
 
         // return/print the console menu
         Menu menu = new Menu(actions);
