@@ -40,6 +40,7 @@ public class PlayerAlive implements Status {
   public void tickStatus(GameEntity currEntity, Location location) {
     if (!this.actor.hasStatus(Sleeping.class)) {
       this.actor.modifyAttribute(BaseAttributes.STAMINA, ActorAttributeOperation.DECREASE, 1);
+      this.actor.modifyAttribute(BaseAttributes.MANA, ActorAttributeOperation.DECREASE, 1);
     }
   }
 
@@ -50,7 +51,7 @@ public class PlayerAlive implements Status {
    */
   @Override
   public boolean isStatusActive() {
-    return this.actor.getAttribute(BaseAttributes.STAMINA) != 0;
+    return (this.actor.getAttribute(BaseAttributes.STAMINA) > 0) && (this.actor.getAttribute(BaseAttributes.MANA) > 0);
   }
 
 }
