@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.SleepAction;
 import game.capabilities.Sleepable;
+import java.util.Random;
 
 
 /**
@@ -15,7 +16,7 @@ import game.capabilities.Sleepable;
  * @author Fauzanda Lathifanka Sunarko
  */
 public class Bedroll extends Item implements Sleepable {
-
+  private final Random random = new Random();
   /**
    * Store the sleep duration
    */
@@ -48,7 +49,7 @@ public class Bedroll extends Item implements Sleepable {
   @Override
   public ActionList allowableActions(Location location) {
     ActionList actions = new ActionList();
-    this.duration = (int) ((Math.random() * (10 - 6)) + 6);
+    this.duration = random.nextInt(6,11);
     actions.add(new SleepAction(this, this.duration));
     return actions;
   }
