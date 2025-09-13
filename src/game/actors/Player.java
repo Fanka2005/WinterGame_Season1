@@ -11,7 +11,7 @@ import edu.monash.fit2099.engine.actors.attributes.BaseAttributes;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.displays.Menu;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.BareFist;
+import game.weapons.BareFist;
 
 /**
  * Class representing the Player.

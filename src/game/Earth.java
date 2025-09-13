@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.positions.DefaultGroundCreator;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.Player;
+import game.grounds.Snow;
 import game.items.Bedroll;
 import game.items.Bottle;
 import game.statuses.PlayerAlive;
