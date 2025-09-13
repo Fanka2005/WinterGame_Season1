@@ -13,15 +13,16 @@ import game.statuses.Sleeping;
  * @author Fauzanda Lathifanka Sunarko
  */
 public class SleepAction extends Action {
+
   /**
    * Store the sleepable object
    */
-  private Sleepable sleepable;
+  private final Sleepable sleepable;
 
   /**
    * Store the duration
    */
-  private int duration;
+  private final int duration;
 
   /**
    * SleepAction Constructor
@@ -40,24 +41,25 @@ public class SleepAction extends Action {
    */
   @Override
   public Action getNextAction() {
-    if(this.duration>0) {
-      return new SleepAction(this.sleepable, this.duration-1);}
+    if (this.duration > 0) {
+      return new SleepAction(this.sleepable, this.duration - 1);
+    }
     return null;
   }
 
   /**
    * Override the abstract method execute in the Action class
    *
-   * @param actor   is the actor object
-   * @param map is the game map
+   * @param actor is the actor object
+   * @param map   is the game map
    * @return a string
    */
   @Override
   public String execute(Actor actor, GameMap map) {
-    if(!actor.hasStatus(Sleeping.class)){
+    if (!actor.hasStatus(Sleeping.class)) {
       actor.addStatus(new Sleeping(this.duration));
     }
-    if(this.duration>0) {
+    if (this.duration > 0) {
       return actor + " is sleeping, " + this.duration + " more turns";
     }
 

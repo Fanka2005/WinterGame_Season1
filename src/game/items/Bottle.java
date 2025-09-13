@@ -55,11 +55,11 @@ public class Bottle extends Item implements Drinkable {
   }
 
   /**
-   * List of allowable actions that the bottle can perform to its owner
-   * or to the current map while being carried by an actor.
+   * List of allowable actions that the bottle can perform to its owner or to the current map while
+   * being carried by an actor.
    *
    * @param owner the actor that owns the item
-   * @param map the map where the actor is performing the action on
+   * @param map   the map where the actor is performing the action on
    * @return an unmodifiable list of Actions
    */
   public ActionList allowableActions(Actor owner, GameMap map) {

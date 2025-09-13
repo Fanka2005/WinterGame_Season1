@@ -12,10 +12,11 @@ import game.capabilities.Drinkable;
  * @author Fauzanda Lathifanka Sunarko
  */
 public class DrinkAction extends Action {
+
   /**
    * Store the drinkable object
    */
-  private Drinkable drinkable;
+  private final Drinkable drinkable;
 
   /**
    * DrinkAction Constructor
@@ -29,8 +30,8 @@ public class DrinkAction extends Action {
   /**
    * Override the abstract method execute in the Action class
    *
-   * @param actor   is the actor object
-   * @param map is the game map
+   * @param actor is the actor object
+   * @param map   is the game map
    * @return a string
    */
   @Override

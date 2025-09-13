@@ -15,9 +15,11 @@ import game.weapons.BareFist;
 
 /**
  * Class representing the Player.
+ *
  * @author Adrian Kristanto
  */
 public class Player extends Actor {
+
     /**
      * Constructor.
      *
@@ -37,8 +39,9 @@ public class Player extends Actor {
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         // Handle multi-turn Actions
-        if (lastAction.getNextAction() != null)
+        if (lastAction.getNextAction() != null) {
             return lastAction.getNextAction();
+        }
 
         display.println(
             this + "\n" + "Hydration Level: " + this.getAttribute(STAMINA) + "\n" + "Warmth Level: "

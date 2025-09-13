@@ -6,8 +6,8 @@ import edu.monash.fit2099.engine.positions.Location;
 
 /**
  * <h1>Sleeping class</h1>
- * This class is used to implement Status interface, this class is used to represent the player status
- * sleeping
+ * This class is used to implement Status interface, this class is used to represent the player
+ * status sleeping
  *
  * @author Fauzanda Lathifanka Sunarko
  */
