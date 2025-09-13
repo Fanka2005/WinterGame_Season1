@@ -16,7 +16,12 @@ import java.util.Random;
  * @author Fauzanda Lathifanka Sunarko
  */
 public class Bedroll extends Item implements Sleepable {
+
+  /**
+   * Store the random instance
+   */
   private final Random random = new Random();
+
   /**
    * Store the sleep duration
    */
