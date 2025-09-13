@@ -1,5 +1,6 @@
 package game;
 
+import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.capabilities.Status;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.DefaultGroundCreator;
@@ -39,8 +40,9 @@ public class Earth extends World {
         GameMap gameMap = new GameMap("Forest", groundCreator, map);
         this.addGameMap(gameMap);
 
-        Player player = new Player("Explorer", 'ඞ', 100);
+        Actor player = new Player("Explorer", 'ඞ', 100);
         this.addPlayer(player, gameMap.at(1, 1));
+
 
         player.addItemToInventory(new Bedroll());
         player.addItemToInventory(new Bottle(5));
