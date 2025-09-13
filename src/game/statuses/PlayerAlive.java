@@ -31,8 +31,7 @@ public class PlayerAlive implements Status {
   }
 
   /**
-   * Called once per tick to update the status of the current entity. Default implementation does
-   * nothing.
+   * Called once per tick to update the status of the current entity.
    *
    * @param currEntity the entity this status is attached to
    */
@@ -46,12 +45,14 @@ public class PlayerAlive implements Status {
 
   /**
    * Indicates whether this status is still active.
+   * It will return False if the HydrationLevel or WarmthLevel or Health Points is 0 or less
+   * It will return True if the HydrationLevel, WarmthLevel and Health Points is all above 0
    *
    * @return true if active, false otherwise
    */
   @Override
   public boolean isStatusActive() {
-    return (this.actor.getAttribute(BaseAttributes.STAMINA) > 0) && (this.actor.getAttribute(BaseAttributes.MANA) > 0);
+    return (this.actor.getAttribute(BaseAttributes.STAMINA) >= 0) && (this.actor.getAttribute(BaseAttributes.MANA) >= 0) && (this.actor.getAttribute(BaseAttributes.HEALTH) > 0);
   }
 
 }
