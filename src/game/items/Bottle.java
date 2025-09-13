@@ -31,8 +31,8 @@ public class Bottle extends Item implements Drinkable {
    * Bottle class Constructor.
    *
    */
-  public Bottle(int maxCapacity) {
-    super("Bottle", 'B', true);
+  public Bottle(String name, char displayChar, boolean value, int maxCapacity) {
+    super(name, displayChar, value);
     this.maxCapacity = maxCapacity;
     this.remainCapacity = maxCapacity;
   }

@@ -30,8 +30,8 @@ public class Bedroll extends Item implements Sleepable {
   /**
    * Bedroll class Constructor
    */
-  public Bedroll() {
-    super("Bedroll", 'R', true);
+  public Bedroll(String name, char displayChar, boolean value) {
+    super(name, displayChar, value);
   }
 
   /**

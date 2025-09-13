@@ -46,17 +46,17 @@ public class Earth extends World {
         Actor player = new Player("Explorer", 'ඞ', 100);
         this.addPlayer(player, gameMap.at(1, 1));
 
-        Actor bear = new Bear("Bear", '&', 200);
+        Actor bear = new Bear("Bear", 'B', 200);
         this.addPlayer(bear, gameMap.at(2, 2));
 
-        Actor wolf = new Wolf("Wolf", '>', 100);
+        Actor wolf = new Wolf("Wolf", 'e', 100);
         this.addPlayer(wolf, gameMap.at(2, 1));
 
-        Actor Deer = new Deer("Deer", '$', 100);
+        Actor Deer = new Deer("Deer", 'd', 100);
         this.addPlayer(Deer, gameMap.at(3, 1));
 
-        player.addItemToInventory(new Bedroll());
-        player.addItemToInventory(new Bottle(5));
+        player.addItemToInventory(new Bedroll("Bedroll", '=', true));
+        player.addItemToInventory(new Bottle("Bottle", 'o', true,5));
 
         Status alive = new PlayerAlive(player);
         player.addStatus(alive);
