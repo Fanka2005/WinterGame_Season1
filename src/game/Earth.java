@@ -43,9 +43,6 @@ public class Earth extends World {
         GameMap gameMap = new GameMap("Forest", groundCreator, map);
         this.addGameMap(gameMap);
 
-        Actor player = new Player("Explorer", 'ඞ', 100);
-        this.addPlayer(player, gameMap.at(1, 1));
-
         Actor bear = new Bear("Bear", 'B', 200);
         this.addPlayer(bear, gameMap.at(2, 2));
 
@@ -54,6 +51,9 @@ public class Earth extends World {
 
         Actor Deer = new Deer("Deer", 'd', 100);
         this.addPlayer(Deer, gameMap.at(3, 1));
+
+        Actor player = new Player("Explorer", 'ඞ', 100);
+        this.addPlayer(player, gameMap.at(1, 1));
 
         player.addItemToInventory(new Bedroll("Bedroll", '=', true));
         player.addItemToInventory(new Bottle("Bottle", 'o', true,5));
