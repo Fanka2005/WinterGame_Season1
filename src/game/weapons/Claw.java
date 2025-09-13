@@ -10,6 +10,9 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
  */
 public class Claw extends IntrinsicWeapon {
 
+  /**
+   * Bite Constructor
+   */
   public Claw() {
     super(75, "claw", 80, "claw");
   }
