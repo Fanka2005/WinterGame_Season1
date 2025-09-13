@@ -10,7 +10,6 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
 import game.behaviours.WanderBehaviour;
-import game.weapons.Claw;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -37,7 +36,6 @@ public class Deer extends Actor {
 
   public Deer(String name, char displayChar, int hitPoints) {
     super(name, displayChar, hitPoints);
-    this.setIntrinsicWeapon(new Claw());
     this.behaviours.put(999, new WanderBehaviour());
   }
 

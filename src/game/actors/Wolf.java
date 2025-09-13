@@ -11,7 +11,7 @@ import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.WanderBehaviour;
-import game.weapons.Claw;
+import game.weapons.Bite;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -38,7 +38,7 @@ public class Wolf extends Actor {
 
   public Wolf(String name, char displayChar, int hitPoints) {
     super(name, displayChar, hitPoints);
-    this.setIntrinsicWeapon(new Claw());
+    this.setIntrinsicWeapon(new Bite());
     this.behaviours.put(0, new AttackBehaviour());
     this.behaviours.put(999, new WanderBehaviour());
   }
