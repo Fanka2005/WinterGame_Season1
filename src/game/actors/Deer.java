@@ -9,7 +9,6 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
-import game.behaviours.WanderBehaviour;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -36,7 +35,17 @@ public class Deer extends Actor {
 
   public Deer(String name, char displayChar, int hitPoints) {
     super(name, displayChar, hitPoints);
-    this.behaviours.put(999, new WanderBehaviour());
+
+  }
+
+  /**
+   * Add Behaviour Method
+   *
+   * @param order     the behaviour order
+   * @param behaviour is the behaviour
+   */
+  public void addBehaviour(int order, Behaviour behaviour) {
+    this.behaviours.put(order, behaviour);
   }
 
   /**
