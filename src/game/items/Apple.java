@@ -45,7 +45,7 @@ public class Apple extends Item implements Consumable {
    * @return a string that inform what happened.
    */
   @Override
-  public String consumedBy(Actor actor) {
+  public String consumedBy(Actor actor, GameMap map) {
     if (actor.hasStatus(PlayerAlive.class)) {
       actor.modifyAttribute(BaseAttributes.STAMINA, ActorAttributeOperation.INCREASE,
           this.INCREASE_HYDRATION_VALUE);

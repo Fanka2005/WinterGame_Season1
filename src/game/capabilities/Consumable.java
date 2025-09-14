@@ -1,6 +1,7 @@
 package game.capabilities;
 
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.positions.GameMap;
 
 /**
  * Interface representing and is a signature for Consumable object
@@ -15,5 +16,5 @@ public interface Consumable {
    * @param actor is the actor object
    * @return a string that inform what happened.
    */
-  String consumedBy(Actor actor);
+  String consumedBy(Actor actor, GameMap map);
 }

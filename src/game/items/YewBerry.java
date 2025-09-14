@@ -2,8 +2,6 @@ package game.items;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.actors.attributes.ActorAttributeOperation;
-import edu.monash.fit2099.engine.actors.attributes.BaseAttributes;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actions.ConsumeAction;
@@ -17,18 +15,12 @@ import game.capabilities.Consumable;
  */
 public class YewBerry extends Item implements Consumable {
 
-  /**
-   * Store the constant Health value
-   */
-  private final int UPDATE_HEALTH_VALUE;
-
   /***
    * YewBerry class Constructor.
    *
    */
   public YewBerry(String name, char displayChar, boolean value) {
     super(name, displayChar, value);
-    this.UPDATE_HEALTH_VALUE = 0;
   }
 
   /**
@@ -38,10 +30,9 @@ public class YewBerry extends Item implements Consumable {
    * @return a string that inform what happened.
    */
   @Override
-  public String consumedBy(Actor actor) {
+  public String consumedBy(Actor actor, GameMap map) {
 
-    actor.modifyAttribute(BaseAttributes.HEALTH, ActorAttributeOperation.UPDATE,
-        this.UPDATE_HEALTH_VALUE);
+    actor.unconscious(map);
 
     return actor + " consumes the " + this + " and gets killed";
   }

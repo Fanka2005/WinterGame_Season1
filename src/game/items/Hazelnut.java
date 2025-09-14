@@ -38,7 +38,7 @@ public class Hazelnut extends Item implements Consumable {
    * @return a string that inform what happened.
    */
   @Override
-  public String consumedBy(Actor actor) {
+  public String consumedBy(Actor actor, GameMap map) {
 
     actor.modifyStatsMaximum(BaseAttributes.HEALTH, ActorAttributeOperation.INCREASE,
         this.INCREASE_HEALTH_VALUE);
