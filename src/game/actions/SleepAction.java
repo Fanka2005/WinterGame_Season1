@@ -56,7 +56,7 @@ public class SleepAction extends Action {
    */
   @Override
   public String execute(Actor actor, GameMap map) {
-    if (!actor.hasStatus(Sleeping.class)) {
+    if (this.duration > 0 && !actor.hasStatus(Sleeping.class)) {
       actor.addStatus(new Sleeping(this.duration));
     }
     if (this.duration > 0) {
