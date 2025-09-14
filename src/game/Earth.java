@@ -10,6 +10,8 @@ import game.actors.Bear;
 import game.actors.Deer;
 import game.actors.Player;
 import game.actors.Wolf;
+import game.behaviours.AttackBehaviour;
+import game.behaviours.WanderBehaviour;
 import game.grounds.Snow;
 import game.items.Bedroll;
 import game.items.Bottle;
@@ -43,14 +45,19 @@ public class Earth extends World {
         GameMap gameMap = new GameMap("Forest", groundCreator, map);
         this.addGameMap(gameMap);
 
-        Actor bear = new Bear("Bear", 'B', 200);
-        this.addPlayer(bear, gameMap.at(2, 2));
+        Bear bear = new Bear("Bear", 'B', 200);
+        this.addPlayer(bear, gameMap.at(8, 8));
+        bear.addBehaviour(0, new AttackBehaviour());
+        bear.addBehaviour(999, new WanderBehaviour());
 
-        Actor wolf = new Wolf("Wolf", 'e', 100);
-        this.addPlayer(wolf, gameMap.at(2, 1));
+        Wolf wolf = new Wolf("Wolf", 'e', 100);
+        this.addPlayer(wolf, gameMap.at(5, 5));
+        wolf.addBehaviour(0, new AttackBehaviour());
+        wolf.addBehaviour(999, new WanderBehaviour());
 
-        Actor Deer = new Deer("Deer", 'd', 100);
-        this.addPlayer(Deer, gameMap.at(3, 1));
+        Deer deer = new Deer("Deer", 'd', 100);
+        this.addPlayer(deer, gameMap.at(7, 7));
+        deer.addBehaviour(999, new WanderBehaviour());
 
         Actor player = new Player("Explorer", 'ඞ', 100);
         this.addPlayer(player, gameMap.at(1, 1));
