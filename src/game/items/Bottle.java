@@ -18,6 +18,11 @@ import game.capabilities.Drinkable;
 public class Bottle extends Item implements Drinkable {
 
   /**
+   * Store the constant increase Hydration Value
+   */
+  private final int INCREASE_HYDRATION_VALUE;
+
+  /**
    * Store the bottle maximum capacity
    */
   private final int maxCapacity;
@@ -35,6 +40,7 @@ public class Bottle extends Item implements Drinkable {
     super(name, displayChar, value);
     this.maxCapacity = maxCapacity;
     this.remainCapacity = maxCapacity;
+    this.INCREASE_HYDRATION_VALUE = 4;
   }
 
   /**
@@ -49,7 +55,8 @@ public class Bottle extends Item implements Drinkable {
       return "Water bottle is empty";
     }
     this.remainCapacity -= 1;
-    actor.modifyAttribute(BaseAttributes.STAMINA, ActorAttributeOperation.INCREASE, 4);
+    actor.modifyAttribute(BaseAttributes.STAMINA, ActorAttributeOperation.INCREASE,
+        this.INCREASE_HYDRATION_VALUE);
     return actor + " drinks from this bottle " + this.remainCapacity + "/" + this.maxCapacity
         + " remaining";
   }

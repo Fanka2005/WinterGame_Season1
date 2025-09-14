@@ -2,6 +2,11 @@ package game.capabilities;
 
 import edu.monash.fit2099.engine.actors.Actor;
 
+/**
+ * Interface representing and is a contract for Sleepable object
+ *
+ * @author Fauzanda Lathifanka Sunarko
+ */
 public interface Sleepable {
 
   /**
