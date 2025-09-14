@@ -40,7 +40,7 @@ public class YewBerryTree extends Ground {
     Random tile = new Random();
     int exit = tile.nextInt(location.getExits().size());
 
-    if (this.counter % 10 == 0) {
+    if (this.counter % 5 == 0) {
       location.getExits().get(exit).getDestination().addItem(new YewBerry("Yew Berry", 'x', true));
     }
   }
