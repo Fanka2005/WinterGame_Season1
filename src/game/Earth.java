@@ -12,7 +12,10 @@ import game.actors.Player;
 import game.actors.Wolf;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.WanderBehaviour;
+import game.grounds.AppleTree;
+import game.grounds.HazelnutTree;
 import game.grounds.Snow;
+import game.grounds.YewBerryTree;
 import game.items.Bedroll;
 import game.items.Bottle;
 import game.statuses.PlayerAlive;
@@ -64,6 +67,10 @@ public class Earth extends World {
 
         player.addItemToInventory(new Bedroll("Bedroll", '=', true));
         player.addItemToInventory(new Bottle("Bottle", 'o', true,5));
+
+        gameMap.at(6,6).setGround(new AppleTree('T', "Apple Tree"));
+        gameMap.at(8,8).setGround(new HazelnutTree('A', "Hazelnut Tree"));
+        gameMap.at(9,5).setGround(new YewBerryTree('Y', "Yew Berry Tree"));
 
         Status alive = new PlayerAlive(player);
         player.addStatus(alive);
