@@ -1,8 +1,12 @@
 package game;
 
+import static game.Abilities.CAN_TAME;
+import static game.Abilities.TAME_BEAR;
+
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.capabilities.Status;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.DefaultGroundCreator;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
@@ -18,6 +22,7 @@ import game.grounds.Snow;
 import game.grounds.YewBerryTree;
 import game.items.Bedroll;
 import game.items.Bottle;
+import game.items.Hazelnut;
 import game.statuses.PlayerAlive;
 import java.util.Arrays;
 import java.util.List;
@@ -49,7 +54,8 @@ public class Earth extends World {
         this.addGameMap(gameMap);
 
         Bear bear = new Bear("Bear", 'B', 200);
-        this.addPlayer(bear, gameMap.at(8, 8));
+        this.addPlayer(bear, gameMap.at(2, 1));
+
         bear.addBehaviour(0, new AttackBehaviour());
         bear.addBehaviour(999, new WanderBehaviour());
 
@@ -64,9 +70,14 @@ public class Earth extends World {
 
         Actor player = new Player("Explorer", 'ඞ', 100);
         this.addPlayer(player, gameMap.at(1, 1));
+        player.enableAbility(CAN_TAME);
 
         player.addItemToInventory(new Bedroll("Bedroll", '=', true));
         player.addItemToInventory(new Bottle("Bottle", 'o', true,5));
+
+        Item hazelnut = new Hazelnut("Hazelnut", 'n', true);
+        hazelnut.enableAbility(TAME_BEAR);
+        player.addItemToInventory(hazelnut);
 
         gameMap.at(6,6).setGround(new AppleTree('T', "Apple Tree"));
         gameMap.at(8,8).setGround(new HazelnutTree('A', "Hazelnut Tree"));
