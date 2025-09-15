@@ -1,14 +1,26 @@
 package game.actors;
 
+import static game.Abilities.CAN_TAME;
+import static game.Abilities.TAME_BEAR;
+
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.actors.Behaviour;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
+import game.actions.ConsumeAction;
+import game.actions.GetItemAction;
+import game.actions.TameAction;
+import game.behaviours.CollectDropsBehaviour;
+import game.behaviours.FightAlongsideBehaviour;
+import game.behaviours.FollowBehaviour;
+import game.capabilities.Consumable;
+import game.capabilities.Tameable;
 import game.weapons.Claw;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +31,7 @@ import java.util.TreeMap;
  *
  * @author Fauzanda Lathifanka Sunarko
  */
-public class Bear extends Actor {
+public class Bear extends Actor implements Tameable {
 
   /**
    * Store the behaviours that the Bear can use
@@ -47,6 +59,25 @@ public class Bear extends Actor {
    */
   public void addBehaviour(int order, Behaviour behaviour) {
     this.behaviours.put(order, behaviour);
+  }
+
+  /**
+   * The tamedBy methods, which will provide the implementation for the Tame Action Once a
+   * beast/Non-Player actor is tamed by the explorer, it will have 3 behaviours which are :
+   * FightAlongside Behaviour Collect Hazelnut Behaviour Follow owner behaviour
+   *
+   * @param actor is the actor object
+   * @return a string that inform what happened.
+   */
+  @Override
+  public String tamedBy(Actor actor, GameMap map, Consumable item) {
+    actor.removeItemFromInventory((Item) item);
+    Action consume = new ConsumeAction(item);
+    String message = consume.execute(this, map);
+    this.addBehaviour(0, new FightAlongsideBehaviour());
+    this.addBehaviour(1, new CollectDropsBehaviour(actor));
+    this.addBehaviour(2, new FollowBehaviour(actor));
+    return message + " given by " + actor + " and is tamed";
   }
 
   /**
@@ -88,13 +119,23 @@ public class Bear extends Actor {
 
     if (weapons.isEmpty()) {
       list.add(new AttackAction(this, map.locationOf(this).toString(), null));
-      return list;
+
+    } else {
+      for (Weapon weapon : weapons) {
+        list.add(new AttackAction(this, map.locationOf(this).toString(), weapon));
+      }
     }
 
-    for (Weapon weapon : weapons) {
-      list.add(new AttackAction(this, map.locationOf(this).toString(), weapon));
+    if (otherActor.hasAbility(CAN_TAME)) {
+      for (Consumable item : otherActor.getItemInventoryAs(Consumable.class)) {
+        if (((Item) item).hasAbility(TAME_BEAR)) {
+          list.add(new TameAction(this, item));
+        }
+      }
+      if (!this.getItemInventory().isEmpty()) {
+        list.add(new GetItemAction(this));
+      }
     }
-
     return list;
   }
 
