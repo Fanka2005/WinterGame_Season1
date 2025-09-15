@@ -5,4 +5,6 @@ package game;
  * attach Abilities.WALL_JUMP to the Player class
  */
 public enum Abilities {
+  CAN_TAME,
+  TAME_BEAR,
 }
