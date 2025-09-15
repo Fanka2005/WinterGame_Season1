@@ -17,17 +17,10 @@ import edu.monash.fit2099.engine.positions.GameMap;
 public class CollectDropsBehaviour implements Behaviour {
 
   /**
-   * Store the beast/Non-Player actor owner
-   */
-  private final Actor owner;
-
-  /**
    * Constructor, initialise the owner
    *
-   * @param owner the beast/animal owner
    */
-  public CollectDropsBehaviour(Actor owner) {
-    this.owner = owner;
+  public CollectDropsBehaviour() {
   }
 
   /**
@@ -42,7 +35,7 @@ public class CollectDropsBehaviour implements Behaviour {
   public Action generateAction(Actor actor, GameMap map) {
     for (Item item : map.locationOf(actor).getItems()) {
       if (item.hasAbility(TAME_BEAR)) {
-        return item.getPickUpAction(this.owner);
+        return item.getPickUpAction(actor);
 
       }
     }

@@ -75,7 +75,7 @@ public class Bear extends Actor implements Tameable {
     Action consume = new ConsumeAction(item);
     String message = consume.execute(this, map);
     this.addBehaviour(0, new FightAlongsideBehaviour());
-    this.addBehaviour(1, new CollectDropsBehaviour(actor));
+    this.addBehaviour(1, new CollectDropsBehaviour());
     this.addBehaviour(2, new FollowBehaviour(actor));
     return message + " given by " + actor + " and is tamed";
   }
