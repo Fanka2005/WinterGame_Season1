@@ -43,7 +43,7 @@ public class Hazelnut extends Item implements Consumable {
     actor.modifyStatsMaximum(BaseAttributes.HEALTH, ActorAttributeOperation.INCREASE,
         this.INCREASE_HEALTH_VALUE);
 
-    return actor + " consumes the " + this + " and restore " + this.INCREASE_HEALTH_VALUE;
+    return actor + " consumes the " + this + " and increase maximum health points by " + this.INCREASE_HEALTH_VALUE;
   }
 
   /**
